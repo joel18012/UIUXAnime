@@ -1,23 +1,39 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faNewspaper, faHeart, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react';
+import Login from './Login';
 
 function MenuTop() {
+    const [login,setLogin] = useState(false);
+
     //aqui falta info del login
     return (
-        <nav class="bordeb navbar navbar-light bg-light">
+        <nav class="bordeb navbar navbar-light bg-light" style={style.NavBar}>
+            {login && <Login open={login}></Login>}
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <h4>ANIME UWU</h4></a>
-                <button className="btn btn-light">Inicio</button>
-                <button className="btn btn-light">Noticias</button>
-                <button className="btn btn-light">Mi lista</button>
-
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <a class="navbar-brand" href="#" style={style.Texto}>ANIME UWU</a>
+                <a className="btn btn-light" style={style.Texto}>
+                    <FontAwesomeIcon icon={faHome} className="mx-2"/>
+                    Home
+                </a>
+                <a className="btn btn-light" style={style.Texto}>
+                    <FontAwesomeIcon icon={faNewspaper} className="mx-2"/>
+                    Noticias
+                </a>
+                <a className="btn" style={style.Texto}>
+                    <FontAwesomeIcon icon={faHeart} className="mx-2"/>
+                    Mi lista
+                </a>
+                <form class="d-flex" style={{backgroundColor:'#fff', borderRadius:20,}}>
+                    <input class="form-control" style={{borderWidth:0, borderRadius:20,}} type="search" placeholder="Buscar anime..." aria-label="Search"></input>
+                    <button class="btn btn-outline-dark" style={{borderWidth:0,borderRadius:20}} type="submit"><FontAwesomeIcon icon={faSearch} className="mx-2"/></button>
                 </form>
 
-                <button className="btn btn-light">Iniciar Sesion</button>
-                <button className="btn btn-dark" >Registrarse</button>
+                <div>
+                    <button className="btn btn-light" onClick={()=>login ? setLogin(false):setLogin(true) }>Iniciar Sesion</button>
+                    <button className="btn btn-dark" style={{borderRadius:20}}>Registrarse</button>
+                </div>
             </div>
             
 
@@ -25,4 +41,16 @@ function MenuTop() {
     )
 }
 
+const style = {
+    NavBar: {
+        borderRadius:18,
+        fontFamily: 'roboto',
+        padding: 14,
+    },
+    Texto: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        fontFamily: 'roboto'
+    }
+}
 export default MenuTop;

@@ -1,34 +1,35 @@
 .CuadroImagen {
     position: relative;
+    text-align: center;
     display: inline-block;
     margin: 8px 8px;
-    box-shadow: 2px 2px 4px #bbb;
-    width: 140px;
-    height: 200px;
-    vertical-align: bottom;
-    background-position: top left;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .difuminadoCuadro {
-    margin-top: 154px;
-    background-color: #582328;
-    margin-left: 5px;
-    width: 130px;
+    background-color: #240f0fde;
+    padding: 2px;
+    width: 155px;;
     height: 30px;
     position: absolute;
-    opacity: 0.6;
-    border-radius: 15px;
+    bottom: 5px;
+    border-radius: 10px;
 }
 
 .tituloCuadro {
-    width: 125px;
+    font-family: 'roboto';
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
     color: #fff;
-    margin-top: 158px;
-    margin-left: 9px;
-    position: absolute;
-    text-align: left;
+    text-align: center;
     white-space: nowrap;
+    overflow: hidden;
+}
+
+.imagenSmall {
+    border-radius: 20px;
+    width: 182px;
+    height: 236px;
+    background-size: cover;
     overflow: hidden;
 }
