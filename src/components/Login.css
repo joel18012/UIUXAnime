@@ -11,6 +11,7 @@
 }
 
 .myCard{
+    position: relative;
     margin: auto;
     margin-top: 10%;
     background: rgb(255, 255, 255);
@@ -26,7 +27,9 @@
 }
 
 .myCardRight{
-    text-align: center;
+    height: 100%;
+    position: relative;
+    text-align: right;
     align-items: center;
     justify-content: center;
 }
@@ -36,13 +39,13 @@
     border-radius:15px;
     font-family:'roboto';
     font-size:15px;
-    width:100%;
     height:50px;
     padding:5px;
     margin-top: 20px;
 }
 
 .btnLogin{
+    width:100%;
     background-color: #36ea8f;
     color: #fff;
     border: 0px;
@@ -53,4 +56,15 @@
     background-color: #e7e7e7;
     color: rgb(155, 155, 155);
     border: 0px;
+    width:100%;
+}
+
+.btnCerrar{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: #fff;
+    color: #484848;
+    border: 0;
+    margin-top: 0px;
 }

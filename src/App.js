@@ -12,8 +12,6 @@ import {
   Link,
 } from "react-router-dom";
 
-
-
 function App() {
   return (
     <div className="App container-fluid">
@@ -36,10 +34,8 @@ function App() {
               </div>
             </Route>
 
-            <Route path='/Anime:id'>
-              ssssss
+            <Route path='/Anime/:id'>
               <div className="bordeb col-8 me-4 mt-3">
-                ssss
                 <FullPageAnime></FullPageAnime>
               </div>
               <div className="col mt-3">
@@ -51,10 +47,9 @@ function App() {
                 </div>
               </div>
             </Route>
-
           </Switch>
-
         </Router>
+
       </div>
     </div>
   );
