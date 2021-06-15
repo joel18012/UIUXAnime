@@ -10,11 +10,14 @@ function Login(props){
     const auth = useAuth();
     const {email} = auth.user;
     const [open,setOpen] = useState(false);
+    const [registro,setRegistro] = useState(false);
+
     const [_email,setEmail] = useState();
     const [password,setPassword] = useState();
 
     useEffect(() => {
         setOpen(props.open)
+        setRegistro(props.registro)
     }, [])
 
     const handleChangeEmail = (event) =>{
@@ -30,7 +33,7 @@ function Login(props){
             <div className='fondo'> 
                 <div className='myCard col-8'>
                     <button className='myText btnCerrar' onClick={() =>setOpen(false)}>
-                                    <FontAwesomeIcon icon={faTimes} className="mx-2"/>
+                        <FontAwesomeIcon icon={faTimes} className="mx-2"/>
                     </button>
                     <div className="row">
                         <div className='myCardLeft col-4 pt-5 px-4'>
@@ -45,17 +48,50 @@ function Login(props){
                                 <input className='myText btnPass' type="password" placeholder='Contraseña' onChange={handleChangePass}/>
                                 <a  href='#' style={{color:'#4e7dd5',textDecoration:'none'}}>¿Olvidaste tu contraseña?</a>
                                 <button className='myText btnLogin' onClick={()=>{
-                                    console.log(auth.user);
                                     auth.signin(_email,password)
                                     }}>Iniciar Sesion
-                                    {auth.user ? <a> hola {email} </a> : undefined}
+                                    {auth.user && setOpen(false)}
                                     </button>
-                                <div style={{textAlign:'center',marginTop:80,fontSize:13,}}><span>No estas registrado, </span><a href='#' style={{color:'#36ea8f',textDecoration:'none'}}>registrate aqui</a></div>
+                                <div style={{textAlign:'center',marginTop:80,fontSize:13,}}><span>No estas registrado, </span><a href='#' onClick={()=>{
+                                    setOpen(false);
+                                    setRegistro(true);
+                                    }} style={{color:'#36ea8f',textDecoration:'none'}}>registrate aqui</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>}
+
+            {
+                registro &&
+                <div className='fondo'> 
+                    <div className='myCard col-8'>
+                        <button className='myText btnCerrar' onClick={() =>{setRegistro(false);setOpen(false)}}>
+                            <FontAwesomeIcon icon={faTimes} className="mx-2"/>
+                        </button>
+                        <div className="row">
+                            <div className='myCardLeft col-4 pt-5 px-4'>
+                                <div style={{fontFamily:'roboto',fontWeight:'bold',fontSize:25,textAlign:'left'}}>Bienvenido a Anime uwu</div>
+                                <div style={{fontFamily:'roboto',fontWeight:'lighter',fontSize:17,textAlign:'left'}}>La mejor web de animes en Latinoamerica</div>
+                                <img src={logo}/>
+                            </div>
+                            <div className='myCardRight col-8 m-auto'>
+                                <div className='m-auto' style={{width:'60%'}}>
+                                    <div style={{fontFamily:'roboto',fontWeight:'bold',fontSize:25,textAlign:'left',margin:'auto'}}>Registro</div>
+                                    <input className='myText btnPass' type="text" placeholder='Usuario' onChange={handleChangeEmail}/>
+                                    <input className='myText btnPass' type="password" placeholder='Contraseña' onChange={handleChangePass}/>
+                                    <button className='myText btnLogin' onClick={()=>{
+                                        auth.signup(_email,password);
+                                        setRegistro(false);
+                                        setOpen(false);
+                                        }}>Registrarse
+                                        </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
         )
 }

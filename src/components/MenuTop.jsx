@@ -1,17 +1,18 @@
-import React, { useContext,useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faNewspaper, faHeart, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faNewspaper, faHeart, faSearch, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import Login from './Login';
 import { useAuth }  from '../hook/useAuth'
 
 function MenuTop() {
     const [login,setLogin] = useState(false);
+
     const auth = useAuth();
 
     //aqui falta info del login
     return (
         <nav class="navbar navbar-light bg-light sticky-top" style={style.NavBar}>
-            {login && <Login open={login}></Login>}
+            {login && <Login open={login} ></Login>}
             <div class="container-fluid">
                 <a class="navbar-brand" href="#" style={style.Texto}>ANIME UWU</a>
                 <a className="btn btn-light" style={style.Texto}>
@@ -34,13 +35,16 @@ function MenuTop() {
                 {
                     auth.user ? 
                     <div>
-                        <span>{auth.user.email}</span>
-                        <button onClick={()=>auth.signout()}>Salir</button>
+                        <button className="btn-circle" style={{...style.btnCircle,marginLeft:5}}>
+                            {auth.user.email.substring(0,1).toUpperCase()}
+                        </button>
+                        <button className="btn-circle" style={{...style.btnCircle,marginLeft:5}} onClick={()=>auth.signout()}>
+                            <FontAwesomeIcon icon={faSignOutAlt}/>
+                        </button>
                     </div>
                     :
                     <div>
-                        <button className="btn btn-light" onClick={()=> login ? setLogin(false) : setLogin(true)}>Iniciar Sesion</button>
-                        <button className="btn btn-dark" style={{borderRadius:20}}>Registrarse</button>
+                        <button className="btn btn-light" onClick={()=>login ? setLogin(false):setLogin(true)}>Iniciar Sesion</button>
                     </div>
                 }
             </div>
@@ -57,6 +61,12 @@ const style = {
         fontSize: 15,
         fontWeight: 'bold',
         fontFamily: 'roboto'
+    },
+    btnCircle:{
+        borderRadius:25,
+        borderWidth:0,
+        width:40,
+        height:40
     }
 }
 export default MenuTop;

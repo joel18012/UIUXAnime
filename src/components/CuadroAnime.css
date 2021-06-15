@@ -33,3 +33,15 @@
     background-size: cover;
     overflow: hidden;
 }
+
+.btn-Corazon{
+    position: absolute;
+    border-width: 0px;
+    padding: 1px;
+    border-radius: 15px;
+    font-size: 15px;
+    top: 5px;
+    right: 5px;
+    color: #ffffff;
+    background-color: rgb(233, 57, 57);
+}
