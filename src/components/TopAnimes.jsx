@@ -18,11 +18,11 @@ function TopAnimes() {
     return (
         <div className="row-fluid noticias">
             <div class="col-lg-12 col-md-10 ">
-                <h3>Top Animes</h3>
+                <h5 style={{fontWeight:'bold',padding:8}}>TOP ANIMES (8)</h5>
                 <ol class="list-group">
                     {!todos ? 'Cargando...' :
                         todos.results.map((todo, index) => {
-                            return index>4 ? null: <ElementoListaAnime numero={index+1} imagen={todo.image_url} titulo={todo.title} ></ElementoListaAnime>
+                            return index>7 ? null: <ElementoListaAnime numero={index+1} imagen={todo.image_url} titulo={todo.title} ></ElementoListaAnime>
                         })
                     }
                     </ol>      

@@ -4,24 +4,25 @@ import MenuTop from './components/MenuTop'
 import Noticias from './components/Noticias';
 import TopAnimes from './components/TopAnimes';
 import FullPageAnime from './components/FullPageAnime';
+import UserList from './components/UserList';
+
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from "react-router-dom";
-
-
 
 function App() {
   return (
-    <div className="App container">
+    <div className="App container-fluid">
       <div className="row m-4">
         <MenuTop></MenuTop>
         <Router>
           <Switch>
             <Route path='/inicio'>
-              <div className="bordeb col-8 me-4 mt-3">
+              <div className="bordeb col-9 me-4 mt-3 p-5">
                 <Noticias></Noticias>
                 <AnimesTemporada></AnimesTemporada>
               </div>
@@ -35,10 +36,8 @@ function App() {
               </div>
             </Route>
 
-            <Route path='/Anime:id'>
-              ssssss
+            <Route path='/Anime/:id'>
               <div className="bordeb col-8 me-4 mt-3">
-                ssss
                 <FullPageAnime></FullPageAnime>
               </div>
               <div className="col mt-3">
@@ -51,9 +50,22 @@ function App() {
               </div>
             </Route>
 
+            <Route path='/MiLista'>
+              <div className="bordeb col-8 me-4 mt-3">
+                <UserList></UserList>
+              </div>
+              <div className="col mt-3">
+                <div className="bordeb">
+                  <TopAnimes></TopAnimes>
+                </div>
+                <div className="bordeb mt-5">
+                  <TopAnimes></TopAnimes>
+                </div>
+              </div>
+            </Route>
           </Switch>
-
         </Router>
+
       </div>
     </div>
   );

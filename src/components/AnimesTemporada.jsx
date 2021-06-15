@@ -16,12 +16,12 @@ function AnimesTemporada() {
     }, [])
 
     return (
-        <div className="row-fluid noticias">
-            <div class="col-lg-12 col-md-10 ">
-                <h3>Animes de temporada</h3>
+        <div className="row ">
+            <div className="col-lg-12 col-md-10" style={{textAlign:'left'}}>
+                <h5 style={{textAlign:'left',fontWeight:'bold',padding:8}}>ANIMES DE TEMPORADA</h5>
                 {!todos ? 'Cargando...' :
                         todos.results.map((todo, index) => {
-                            return index>14 ? null: <CuadroAnime imagen={todo.image_url} titulo={todo.title} ></CuadroAnime>
+                            return index > 17 ? null: <CuadroAnime imagen={todo.image_url} titulo={todo.title} ></CuadroAnime>
                         })
                     }     
             </div>

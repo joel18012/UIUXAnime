@@ -1,0 +1,70 @@
+.fondo{
+    position:fixed;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.521);
+    z-index: 2;
+}
+
+.myCard{
+    position: relative;
+    margin: auto;
+    margin-top: 10%;
+    background: rgb(255, 255, 255);
+    border-radius: 30px;
+    width: 500px;
+    height: 700px;
+}
+
+.myCardLeft{
+    background-color: rgb(243, 222, 221);
+    border-radius: 30px 0px 0px 30px;
+    height: 700px;
+}
+
+.myCardRight{
+    height: 100%;
+    position: relative;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+}
+
+.myText{
+    display: block;
+    border-radius:15px;
+    font-family:'roboto';
+    font-size:15px;
+    height:50px;
+    padding:5px;
+    margin-top: 20px;
+}
+
+.btnLogin{
+    width:100%;
+    background-color: #36ea8f;
+    color: #fff;
+    border: 0px;
+    font-weight: bold;
+}
+
+.btnPass{
+    background-color: #e7e7e7;
+    color: rgb(155, 155, 155);
+    border: 0px;
+    width:100%;
+}
+
+.btnCerrar{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: #fff;
+    color: #484848;
+    border: 0;
+    margin-top: 0px;
+}

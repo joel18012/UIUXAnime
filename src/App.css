@@ -1,9 +1,7 @@
 .App {
     text-align: center;
-    background: rgb(175, 188, 201);
-    background: linear-gradient(347deg, rgba(175, 188, 201, 1) 35%, rgba(216, 227, 207, 1) 100%);
+    background: #f8f9fa;
     height: 100%;
-    border-radius: 30px;
     position: relative;
     padding: 8px;
 }
