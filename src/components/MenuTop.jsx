@@ -15,15 +15,15 @@ function MenuTop() {
             {login && <Login open={login} ></Login>}
             <div class="container-fluid">
                 <a class="navbar-brand" href="#" style={style.Texto}>ANIME UWU</a>
-                <a className="btn btn-light" style={style.Texto}>
+                <a className="btn btn-light" style={style.Texto} href='/Inicio'>
                     <FontAwesomeIcon icon={faHome} className="mx-2"/>
                     Home
                 </a>
-                <a className="btn btn-light" style={style.Texto}>
+                <a className="btn btn-light" style={style.Texto} href='/#'>
                     <FontAwesomeIcon icon={faNewspaper} className="mx-2"/>
                     Noticias
                 </a>
-                <a className="btn" style={style.Texto}>
+                <a className="btn" style={style.Texto} href='/MiLista'>
                     <FontAwesomeIcon icon={faHeart} className="mx-2"/>
                     Mi lista
                 </a>

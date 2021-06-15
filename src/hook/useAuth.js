@@ -16,6 +16,9 @@ var firebaseConfig = {
   };
 
   firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const auth = firebase.auth();
+  const storage = firebase.storage();
 
   const authContext = createContext();
 
@@ -74,6 +77,40 @@ function useProvideAuth() {
       });
   };
 
+  const addAnimeToList = async (anime, foto, user) => {
+    try{
+      await firebase
+      .firestore()
+      .collection('MiLista')
+      .add({
+        Anime: anime,
+        Foto: foto,
+        User: user
+      })
+    }catch(e){
+      return e;
+    }
+  };
+
+  const myAnimeList = async () =>{
+    try{
+    const datos = [];
+      const firedb = await firebase.firestore().collection('MiLista')
+        firedb.onSnapshot(queryShapshot => {
+          queryShapshot.docs.forEach(doc => {
+              const {Anime,Foto,User} = doc.data()
+              datos.push({
+                Anime,
+                Foto,
+                User,
+              })
+          });
+        });
+        return datos;
+    }catch (e){
+      return e;
+    }
+  }
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -87,11 +124,14 @@ function useProvideAuth() {
   }, []);
 
   return {
+    db,
     user,
     signin,
     signup,
     signout,
     sendPasswordResetEmail,
     confirmPasswordReset,
+    addAnimeToList,
+    myAnimeList,
   };
 }

@@ -17,7 +17,7 @@ function AnimesTemporada() {
 
     return (
         <div className="row ">
-            <div class="col-lg-12 col-md-10" style={{textAlign:'left'}}>
+            <div className="col-lg-12 col-md-10" style={{textAlign:'left'}}>
                 <h5 style={{textAlign:'left',fontWeight:'bold',padding:8}}>ANIMES DE TEMPORADA</h5>
                 {!todos ? 'Cargando...' :
                         todos.results.map((todo, index) => {

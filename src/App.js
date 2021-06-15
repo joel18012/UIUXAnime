@@ -4,6 +4,8 @@ import MenuTop from './components/MenuTop'
 import Noticias from './components/Noticias';
 import TopAnimes from './components/TopAnimes';
 import FullPageAnime from './components/FullPageAnime';
+import UserList from './components/UserList';
+
 
 import {
   BrowserRouter as Router,
@@ -37,6 +39,20 @@ function App() {
             <Route path='/Anime/:id'>
               <div className="bordeb col-8 me-4 mt-3">
                 <FullPageAnime></FullPageAnime>
+              </div>
+              <div className="col mt-3">
+                <div className="bordeb">
+                  <TopAnimes></TopAnimes>
+                </div>
+                <div className="bordeb mt-5">
+                  <TopAnimes></TopAnimes>
+                </div>
+              </div>
+            </Route>
+
+            <Route path='/MiLista'>
+              <div className="bordeb col-8 me-4 mt-3">
+                <UserList></UserList>
               </div>
               <div className="col mt-3">
                 <div className="bordeb">

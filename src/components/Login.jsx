@@ -8,7 +8,6 @@ import { useAuth }  from '../hook/useAuth'
 function Login(props){
 
     const auth = useAuth();
-    const {email} = auth.user;
     const [open,setOpen] = useState(false);
     const [registro,setRegistro] = useState(false);
 
