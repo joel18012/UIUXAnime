@@ -4,6 +4,7 @@ import MenuTop from './components/MenuTop'
 import Noticias from './components/Noticias';
 import TopAnimes from './components/TopAnimes';
 import FullPageAnime from './components/FullPageAnime';
+import FullPageRight from './components/FullPageRight';
 import UserList from './components/UserList';
 
 
@@ -42,7 +43,7 @@ function App() {
               </div>
               <div className="col mt-3">
                 <div className="bordeb">
-                  <TopAnimes></TopAnimes>
+                  <FullPageRight></FullPageRight>
                 </div>
                 <div className="bordeb mt-5">
                   <TopAnimes></TopAnimes>

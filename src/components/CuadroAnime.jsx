@@ -43,16 +43,18 @@ function CuadroAnime(props) {
        auth.addAnimeToList(titulo,imagen,auth.user.email);
     }
     return (
-        <div className="CuadroImagen imagenSmall" style={{ backgroundImage: `url(${imagen})`, padding:10}}>
-            {auth.user ? 
-                <button className='btn-Corazon' onClick={()=>verificar(titulo,imagen,auth.user.email)}>
-                    <FontAwesomeIcon icon={faHeart} className="mx-2"/>
-                </button> 
-                : undefined}
-            <div className="difuminadoCuadro">
-                <h6 className="tituloCuadro text-break">{titulo}</h6>
+        <a href={`/Anime/${titulo}`}>
+            <div className="CuadroImagen imagenSmall" style={{ backgroundImage: `url(${imagen})`, padding:10}}>
+                {auth.user ? 
+                    <button className='btn-Corazon' onClick={()=>verificar(titulo,imagen,auth.user.email)}>
+                        <FontAwesomeIcon icon={faHeart} className="mx-2"/>
+                    </button> 
+                    : undefined}
+                <div className="difuminadoCuadro">
+                    <h6 className="tituloCuadro text-break">{titulo}</h6>
+                </div>
             </div>
-        </div>
+        </a>
     )
 }
 
