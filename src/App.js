@@ -5,6 +5,8 @@ import Noticias from './components/Noticias';
 import TopAnimes from './components/TopAnimes';
 import FullPageAnime from './components/FullPageAnime';
 import FullPageRight from './components/FullPageRight';
+import FullPageInfo from './components/FullPageInfo';
+
 import UserList from './components/UserList';
 
 
@@ -46,7 +48,7 @@ function App() {
                   <FullPageRight></FullPageRight>
                 </div>
                 <div className="bordeb mt-5">
-                  <TopAnimes></TopAnimes>
+                  <FullPageInfo></FullPageInfo>
                 </div>
               </div>
             </Route>

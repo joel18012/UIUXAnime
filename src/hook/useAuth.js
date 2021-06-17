@@ -91,7 +91,20 @@ function useProvideAuth() {
       return e;
     }
   };
-
+ const addComentToAnime = async(anime,user,cometario) =>{
+    try{
+      await firebase
+      .firestore()
+      .collection('Comentarios')
+      .add({
+        Anime: anime,
+        Comment: cometario,
+        User: user
+      })
+    }catch(e){
+      return e;
+    }
+ };
   const myAnimeList = async () =>{
     try{
     const datos = [];
@@ -133,5 +146,6 @@ function useProvideAuth() {
     confirmPasswordReset,
     addAnimeToList,
     myAnimeList,
+    addComentToAnime,
   };
 }

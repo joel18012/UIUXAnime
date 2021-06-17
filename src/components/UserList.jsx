@@ -34,6 +34,11 @@ const UserList = (props) => {
         console.log(animes)
     }
 
+    if(animes.length === 0){
+        return(
+            <div className="spinner-border my-5" role="status"><span className="visually-hidden">Loading...</span></div>
+            )
+    }
     return (
         <div className='p-5' style={{textAlign:'left'}}>
             <h5 style={{textAlign:'left',fontWeight:'bold',}}>MI LISTA DE ANIMES</h5>
