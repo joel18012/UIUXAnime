@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faTv, faShare } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../hook/useAuth'
+import Notificacion from './Notificacion';
 
 
 const FullPageRight = props => {
@@ -12,6 +13,10 @@ const FullPageRight = props => {
     const auth = useAuth();
     const [animes, setAnimes] = useState([])
     const [siguiendo,setSiguiendo] = useState(true);
+
+    const [notificar, setNotificar] = useState(false)
+    const [borrar, setBorrar] = useState(false)
+    const [existe, setExiste] = useState()
 
     const [idreg,setidreg] = useState([])
 
@@ -50,26 +55,35 @@ const FullPageRight = props => {
     }, [])
 
     const verificar = (anime, user, Nombre, Img) => {
-        const Dato = {
-            Anime: anime,
-            User: user,
-            Nombre: Nombre,
-            Img: Img
-        }
-
+            setBorrar(false);
         if (animes.some(i => i.Anime === anime && i.User === user)) {
-
+            setExiste(true);
             return true;
-
         }
-        auth.addAnimeToList(anime, auth.user.email, Nombre, Img);
+        else{
+           setExiste(false);
+           auth.addAnimeToList(anime, auth.user.email, Nombre, Img);
+        }
     }
     const Remover = (anime, user,) => {
         if (animes.some(i => i.Anime === anime && i.User === user)) {
             auth.delAnimeToList(idreg);
         }
+        setExiste(true);
+        setBorrar(true);
     }
 
+    function renderNotificar(exist,eliminar){
+        return(
+            <Notificacion existe={exist} eliminar={eliminar}></Notificacion>
+        )
+    }
+    const Notificando = () => {
+        if(!notificar) setNotificar(true)
+        setTimeout(() => {
+               setNotificar(false) 
+            }, 1000);
+    } 
     useEffect(() => {
         console.log(todos)
     }, [todos])
@@ -90,11 +104,18 @@ const FullPageRight = props => {
 
                     <div>
                         {siguiendo ?
-                            <button onClick={() => verificar(todos.mal_id, auth.user.email, todos.title, todos.image_url)} style={{ ...style.btnLista, alignContent: 'center', justifyContent: 'center' }}>
+                            <button onClick={() => {
+                                verificar(todos.mal_id, auth.user.email, todos.title, todos.image_url)
+                                Notificando()
+                                }} style={{ ...style.btnLista, alignContent: 'center', justifyContent: 'center' }}>
                                 <FontAwesomeIcon icon={faHeart} style={{ ...style.btnCircle, background: '#f70845' }} className="mx-2" />
                                 <strong>Agregar</strong> a favoritos</button>
                             :
-                            <button onClick={() => Remover(todos.mal_id, auth.user.email)} style={{ ...style.btnLista, alignContent: 'center', justifyContent: 'center' }}>
+                            <button onClick={() => {
+                                Remover(todos.mal_id, auth.user.email)
+                                setSiguiendo(true);
+                                Notificando();
+                            }} style={{ ...style.btnLista, alignContent: 'center', justifyContent: 'center' }}>
                                 <FontAwesomeIcon icon={faHeart} style={{ ...style.btnCircle, background: '#4508f7' }} className="mx-2" />
                                 <strong>Quitar</strong> de favoritos</button>
                         }
@@ -105,6 +126,7 @@ const FullPageRight = props => {
                         </button>
                     </div>
                 </div>
+                {notificar && renderNotificar(existe,borrar)}
             </div>
         </div>
     )

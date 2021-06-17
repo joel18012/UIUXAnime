@@ -64,6 +64,7 @@ const style = {
     NavBar: {
         fontFamily: 'roboto',
         padding: 14,
+        zIndex: 1,
     },
     Texto: {
         fontSize: 15,

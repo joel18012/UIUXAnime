@@ -32,6 +32,9 @@ const FullPageInfo = (props) => {
                         <div><strong>Tipo:</strong> {todos.type}</div>
                         <div><strong>Episodios:</strong> #{todos.episodes}</div>
                         <div><strong>Rating:</strong> {todos.score}</div>
+                        <div><strong>Inicio:</strong> {new Date(todos.aired.from).toString().substring(0,16)}</div>
+                        <div><strong>Final:</strong> {new Date(todos.aired.to).toString().substring(0,16)}</div>
+                        <div><strong>Duracion:</strong> {todos.duration}</div>
                     </div>
                 }
             </div>
