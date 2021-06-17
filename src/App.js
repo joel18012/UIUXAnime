@@ -1,8 +1,10 @@
 import './App.css';
 import AnimesTemporada from './components/AnimesTemporada';
+import Busqueda from './components/Busqueda';
 import MenuTop from './components/MenuTop'
 import Noticias from './components/Noticias';
 import TopAnimes from './components/TopAnimes';
+import TopAnimesTemp from './components/TopAnimesTemp';
 import FullPageAnime from './components/FullPageAnime';
 import FullPageRight from './components/FullPageRight';
 import FullPageInfo from './components/FullPageInfo';
@@ -14,7 +16,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
+  // Link,
 } from "react-router-dom";
 
 function App() {
@@ -34,7 +36,21 @@ function App() {
                   <TopAnimes></TopAnimes>
                 </div>
                 <div className="bordeb mt-5">
+                <TopAnimesTemp></TopAnimesTemp>
+                </div>
+              </div>
+            </Route>
+
+            <Route path='/buscar/:nombre'>
+              <div className="bordeb col-9 me-4 mt-3 p-5">
+                <Busqueda></Busqueda>
+              </div>
+              <div className="col mt-3">
+                <div className="bordeb">
                   <TopAnimes></TopAnimes>
+                </div>
+                <div className="bordeb mt-5">
+                <TopAnimesTemp></TopAnimesTemp>
                 </div>
               </div>
             </Route>
@@ -62,7 +78,7 @@ function App() {
                   <TopAnimes></TopAnimes>
                 </div>
                 <div className="bordeb mt-5">
-                  <TopAnimes></TopAnimes>
+                  <TopAnimesTemp></TopAnimesTemp>
                 </div>
               </div>
             </Route>

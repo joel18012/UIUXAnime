@@ -77,17 +77,33 @@ function useProvideAuth() {
       });
   };
 
-  const addAnimeToList = async (anime, foto, user) => {
+  const addAnimeToList = async (anime, user,nombre,img) => {
     try{
       await firebase
       .firestore()
       .collection('MiLista')
       .add({
         Anime: anime,
-        Foto: foto,
-        User: user
+        User: user,
+        Nombre:nombre,
+        Img:img
+        
       })
     }catch(e){
+      alert(e);
+
+      return e;
+    }
+  };
+  const delAnimeToList = async (id) => {
+    try{
+      await firebase
+      .firestore()
+      .collection('MiLista')
+      .doc(id)
+      .delete()
+    }catch(e){
+      
       return e;
     }
   };
@@ -111,11 +127,12 @@ function useProvideAuth() {
       const firedb = await firebase.firestore().collection('MiLista')
         firedb.onSnapshot(queryShapshot => {
           queryShapshot.docs.forEach(doc => {
-              const {Anime,Foto,User} = doc.data()
+              const {Anime,User,Nombre,Img} = doc.data()
               datos.push({
                 Anime,
-                Foto,
                 User,
+                Nombre,
+                Img
               })
           });
         });
@@ -147,5 +164,6 @@ function useProvideAuth() {
     addAnimeToList,
     myAnimeList,
     addComentToAnime,
+    delAnimeToList
   };
 }

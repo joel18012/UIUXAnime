@@ -3,7 +3,7 @@ import CuadroAnimeGrande from './CuadroAnimeGrande'
 
 
 function Noticias() {
-    const url = 'https://api.jikan.moe/v3/search/anime?q=&order_by=members&sort=desc&page=1';
+    const url = 'https://api.jikan.moe/v3/anime/1/news';
     const [todos, setTodos] = useState();
     const fetchApi = async () => {
         const response = await fetch(url);
@@ -20,8 +20,8 @@ function Noticias() {
             <div class="col-lg-12 col-md-10 ">
                 <div class="cover-container">
                     {!todos ? 'Cargando...' :
-                        todos.results.map((todo, index) => {
-                            return <CuadroAnimeGrande texto={todo.synopsis} imagen={todo.image_url} titulo={todo.title} ></CuadroAnimeGrande>
+                        todos.articles.map((todo, index) => {
+                            return <CuadroAnimeGrande texto={todo.title} imagen={todo.image_url} link={todo.url} ></CuadroAnimeGrande>
                         })
                     }
                 </div>

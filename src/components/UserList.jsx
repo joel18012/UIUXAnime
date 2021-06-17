@@ -11,17 +11,17 @@ const UserList = (props) => {
         firedb.onSnapshot(queryShapshot => {
           const datos = [];
           queryShapshot.docs.forEach(doc => {
-              const {Anime,Foto,User} = doc.data()
+              const {Anime,User,Nombre,Img} = doc.data()
               datos.push({
                 Anime,
-                Foto,
                 User,
+                Nombre,
+                Img
               })
           });
           setAnimes(datos);
           });
     }, [])
-
 
     const filter = (arr) => arr.reduce((acc,el)=>{
         if(el.User === auth.user.email){
@@ -45,12 +45,14 @@ const UserList = (props) => {
             {
                 filter(animes).map((el) => {
                     return(
-                        <CuadroAnime imagen={el.Foto} titulo={el.Anime}></CuadroAnime>
+                        <CuadroAnime imagen={el.Img} titulo={el.Nombre} id={el.Anime}></CuadroAnime>
                     )
                 })
             }
         </div>
     )
+
+    
 }
 
 export default UserList

@@ -7,8 +7,7 @@ import { useAuth }  from '../hook/useAuth'
 
 function CuadroAnime(props) {
     const auth = useAuth();
-    const { imagen, titulo } = props;
-
+    const { imagen, titulo, id } = props;
     const [animes, setAnimes] = useState([])
 
     useEffect(() => {
@@ -17,11 +16,12 @@ function CuadroAnime(props) {
             firedb.onSnapshot(queryShapshot => {
             const datos = [];
             queryShapshot.docs.forEach(doc => {
-              const {Anime,Foto,User} = doc.data()
+              const {Anime,User,Nombre,Img} = doc.data()
               datos.push({
                 Anime,
-                Foto,
                 User,
+                Nombre,
+                Img
               })
           });
           setAnimes(datos);
@@ -29,32 +29,35 @@ function CuadroAnime(props) {
         }
     }, [])
 
-    const verificar = (titulo,imagen,user)=>{
+    const verificar = (titulo,user,nombre,img)=>{
         const Dato = {
             Anime: titulo,
-            Foto: imagen,
             User: user,
+            Nombre: nombre,
+            Img:img,
         }
         
-        if(animes.some(i => i.Anime == Dato.Anime && i.Foto == Dato.Foto&& i.User == Dato.User)){
+        if(animes.some(i => i.Anime === Dato.Anime && i.User === Dato.User)){
             console.log('existe');
             return true;
         }
-       auth.addAnimeToList(titulo,imagen,auth.user.email);
+       auth.addAnimeToList(titulo,auth.user.email,nombre,img);
     }
     return (
-        <a href={`/Anime/${titulo}`}>
-            <div className="CuadroImagen imagenSmall" style={{ backgroundImage: `url(${imagen})`, padding:10}}>
-                {auth.user ? 
-                    <button className='btn-Corazon' onClick={()=>verificar(titulo,imagen,auth.user.email)}>
-                        <FontAwesomeIcon icon={faHeart} className="mx-2"/>
-                    </button> 
-                    : undefined}
+        <div className="CuadroImagen imagenSmall" style={{ backgroundImage: `url(${imagen})`}}>
+            <a href={`/Anime/${id}`} >
+            <div style={{ width:'100%', height:'100%',position:'absolute',padding:15}}>
                 <div className="difuminadoCuadro">
                     <h6 className="tituloCuadro text-break">{titulo}</h6>
                 </div>
             </div>
-        </a>
+            </a>
+                {auth.user ? 
+                    <button className='btn-Corazon'  onClick={()=>verificar(id,auth.user.email,titulo,imagen)}>
+                        <FontAwesomeIcon icon={faHeart} className="mx-2"/>
+                    </button> 
+                    : undefined}
+        </div>
     )
 }
 

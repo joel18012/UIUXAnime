@@ -2,9 +2,10 @@ import React from 'react';
 import './ElementoListaAnime.css'
 
 function ElementoListaAnime(props) {
-    const { imagen, titulo, numero} = props;
+    const { imagen, titulo, numero,id} = props;
     return (
-        <li className="renglon d-flex justify-content-Left align-items-center">
+        <a style={{textDecoration:"none",color:"black"}} href={`/Anime/${id}`}>
+            <li className="renglon d-flex justify-content-Left align-items-center">
             <div className="imagen2 ms-2" style={{ backgroundImage: `url(${imagen})` }}>
             </div>
             <div>
@@ -12,6 +13,7 @@ function ElementoListaAnime(props) {
                 <div className="ms-2 topNumber" style={{textAlign:'left'}}>#{numero}</div>            
             </div>
         </li>
+        </a>
     )
 }
 

@@ -1,31 +1,17 @@
 import React,{useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
-const FullPageInfo = () => {
+const FullPageInfo = (props) => {
     const [todos, setTodos] = useState([]);
     const {id} = useParams();
 
     useEffect(() => {
-    const url = `https://api.jikan.moe/v3/search/anime?q=${id}&page=1`;
-    const datos = [];
+    const url = `https://api.jikan.moe/v3/anime/${id}`;
         async function fetchApi(){
             const response = await fetch(url);
             const responseJSON = await response.json();
             const x = responseJSON;
-            x.results.map((ea, index) => {
-                const {title,image_url,synopsis,type,episodes,score} = ea;
-                datos.push(
-                    {
-                        title,
-                        type,
-                        episodes,
-                        score,
-                    }
-                )
-            })
-            setTodos(datos);
+            setTodos(x);
         }
         fetchApi();
     },[])
@@ -43,10 +29,9 @@ const FullPageInfo = () => {
                     ? <div className="spinner-border" role="status"><span className="visually-hidden">Loading...</span></div>
                     : 
                     <div>
-                        <div><strong>Titulo:</strong> {todos[0].title}</div>
-                        <div><strong>Tipo:</strong> {todos[0].type}</div>
-                        <div><strong>Episodios:</strong> #{todos[0].episodes}</div>
-                        <div><strong>Rating:</strong> {todos[0].score}</div>
+                        <div><strong>Tipo:</strong> {todos.type}</div>
+                        <div><strong>Episodios:</strong> #{todos.episodes}</div>
+                        <div><strong>Rating:</strong> {todos.score}</div>
                     </div>
                 }
             </div>
